@@ -6,7 +6,7 @@ Pour créer un serveur Wildfly, il faut suivre les étapes suivantes :
 
 - Il faut modifier le fichier SetupUbuntu en modifiant le nom du conteneur et ensuite l'executer:
 
-  lxc exec "nom_du_conteneur" -- apt update
+  lxc exec "nom_du_conteneur" -- apt update.
   lxc exec "nom_du_conteneur" -- apt -y upgrade
   lxc exec "nom_du_conteneur" -- apt -y install openssh-server python sudo
   lxc exec "nom_du_conteneur" -- adduser wildfly
