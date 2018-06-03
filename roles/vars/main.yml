@@ -1,0 +1,9 @@
+wildfly_opt: '/opt/wildfly/'
+wildfly_etc: '/etc/wildfly/'
+wildfly_conf: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf'
+wildfly_service: '/opt/wildfly/docs/contrib/scripts/systemd/wildfly.service'
+wildfly_etc_system: '/etc/systemd/system/'
+wildfly_opt_bin: '/opt/wildfly/bin'
+wildfly_sh: '/opt/wildfly/docs/contrib/scripts/systemd/launch.sh'
+
+

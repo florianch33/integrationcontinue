@@ -1,0 +1,63 @@
+- name: Installation du JDK8
+  package: name=openjdk-8-jdk-headless state=present
+
+- name: Création d'un utilisateur système wildfly
+  user:
+    name: wildfly
+    system: yes
+
+- name: Télécharger et decompresser wildfly
+  unarchive:
+    src: 'http://download.jboss.org/wildfly/11.0.0.Final/wildfly-11.0.0.Final.tar.gz'
+    dest: '/opt/'
+    owner: wildfly
+    remote_src: yes
+
+- name: Renommer wildfly-11.0.0.Final en wildfly
+  command: mv '/opt/wildfly-11.0.0.Final/' '{{wildfly_opt}}'
+
+- name: Création du repertoire /etc/wildfly
+  file:
+    path: '{{wildfly_etc}}'
+    state: directory
+    owner: wildfly
+    group: wildfly
+    mode: 0755
+
+- name: Copier le fichier /opt/wildfly/docs/contrib/scripts/systemd/wildfly.conf dans /etc/wildfly/
+  copy:
+    src: '{{wildfly_conf}}'
+    dest: '{{wildfly_etc}}'
+    owner: wildfly
+    group: wildfly
+    mode: 0755
+    remote_src: yes
+
+- name: Copier le fichier /opt/wildfly/docs/contrib/scripts/systemd/wildfly.service dans /etc/systemd/system
+  copy:
+    src: '{{wildfly_service}}'
+    dest: '{{wildfly_etc_system}}'
+    remote_src: yes
+
+- name: Création du repertoire /opt/wildfly/bin
+  file:
+    path: '{{wildfly_opt_bin}}'
+    state: directory
+    owner: wildfly
+    group: wildfly
+    mode: 0755
+
+
+- name: Copier le fichier /opt/wildfly/docs/contrib/scripts/systemd/lauch.sh dans /opt/wildfly/bin
+  copy:
+    src: '{{wildfly_sh}}'
+    dest: '{{wildfly_opt_bin}}'
+    owner: wildfly
+    group: wildfly
+    mode: 0755
+    remote_src: yes
+  notify: 
+     - lancer wildfly
+
+
+

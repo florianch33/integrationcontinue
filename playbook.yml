@@ -1,0 +1,5 @@
+---
+- hosts: TPwildfly
+  roles:
+      - { role: '/home/ubuntu/playbook/roles'} 
+
